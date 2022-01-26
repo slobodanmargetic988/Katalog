@@ -39,8 +39,15 @@ import javax.persistence.Table;
             query   =   "SELECT id, naziv, opis, cena, dostupna_kolicina FROM webkatalog.proizvod",
           /*  "SELECT proizvod.id,naziv,opis,cena,dostupna_kolicina,id_kategorije FROM webkatalog.proizvod inner join webkatalog.veznatabela on webkatalog.proizvod.id = webkatalog.veznatabela.id_proizvoda",*/
                         resultClass = Proizvod.class
+    ),
+            @NamedNativeQuery(
+            name    =   "findFirstById",
+            query   =   "SELECT id, naziv, opis, cena, dostupna_kolicina FROM webkatalog.proizvod p where p.id= :inputid",
+       
+                        resultClass = Proizvod.class
     )
 })
+
 public class Proizvod implements Serializable{
 private static final long serialVersionUID = 1L;
 

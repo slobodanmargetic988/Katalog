@@ -14,4 +14,6 @@ import java.util.List;
  */
 public interface ProizvodDAO {
        public List<Proizvod> getallproizvodi();
+         public Proizvod findFirstById(int id);
+       
 }

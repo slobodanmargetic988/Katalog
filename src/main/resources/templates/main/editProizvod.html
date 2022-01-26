@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="srb"xmlns="https://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org" 
+
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security" 
+      >
+
+    <head>
+        <title>Početna strana | Katalog</title>
+        <meta name="description" content="demo"/> 
+         <meta name="keywords" content="demo"/>
+    <th:block th:insert="fragments/head :: head" />
+</head>
+
+<body>
+      
+
+    <th:block th:insert="fragments/navigation :: navbar" />
+
+               <div style="margin-top: 200px; min-height:600px">
+
+    
+
+
+     
+
+   
+
+        <div class="services">
+            <div>
+                
+                <p>Dodavanje proizvoda</p>
+            </div>
+        </div>
+<form th:action="@{/editProizvod}"  method="POST" >
+                                <h2>Registracija novog proizvoda</h2>
+                               
+                                <input type="text" name="naziv" th:value="${proizvod.naziv}" />
+                                <input type="text" name="opis" th:value="${proizvod.opis}" />
+                               
+                                <input type="number" name="cena" th:value="${proizvod.cena}"  />
+                                <input type="number" name="dostupno" th:value="${proizvod.dostupno}" class="no-arrow" />
+                                 
+                               
+                                <input type="submit" name="" value="Sacuvaj"/>
+                                
+
+                            </form>
+         </div>
+
+
+<th:block th:insert="fragments/footer :: footer" />
+
+
+<div id="backToTop"></div>
+
+<th:block th:insert="fragments/scripts :: scripts" />
+
+
+</body>
+
+</html>

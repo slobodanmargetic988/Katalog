@@ -29,5 +29,13 @@ public class ProizvodRepository implements ProizvodDAO {
         List<Proizvod> proizvodi = manager.createNamedQuery("getallproizvodi", Proizvod.class).getResultList();
         return proizvodi;
     }
+    
+    
+    @Override
+    public Proizvod findFirstById(int id) {
+        Proizvod proizvod = manager.createNamedQuery("findFirstById", Proizvod.class)
+    .setParameter("inputid", id).getSingleResult();
+        return proizvod;
+    }
 
 }

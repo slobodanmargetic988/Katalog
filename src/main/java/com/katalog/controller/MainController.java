@@ -14,8 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.context.WebApplicationContext;
 import com.katalog.configuration.KatalogUserPrincipal;
+import com.katalog.model.Proizvod;
 import com.katalog.repository.ProizvodRepository;
 import com.katalog.service.UserService;
+import java.sql.CallableStatement;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -66,12 +68,7 @@ public class MainController {
             model.addAttribute("user", myUser);
         }
 
-        try {
-      System.out.println(proizvodRepository.getallproizvodi().get(0).getVeznatabela().get(0).getKategorija().getNaziv());
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+  
         return "main/home";
     }
 
@@ -134,11 +131,56 @@ public class MainController {
 
         return "redirect:/";
     }
+    
+        @GetMapping("/dodajProizvod")
+    public String dodajProizvod(Model model
+    ) {
+        return "main/dodajProizvod";
+    }
+ 
+    
+@RequestMapping(value = "/dodajProizvod", method = RequestMethod.POST)
+    public String dodajProizvod(final Model model, final HttpServletRequest request,
+            RedirectAttributes redirectAttributes,
+            @RequestParam(name = "naziv") String naziv,
+            @RequestParam(name = "opis") String opis,
+            @RequestParam(name = "cena") int cena,
+            @RequestParam(name = "dostupno") int dostupno
+    ) {
+      Proizvod proizvod= new Proizvod();
+      proizvod.setNaziv(naziv);
+      proizvod.setOpis(opis);
+      proizvod.setCena(cena);
+      proizvod.setDostupno(dostupno);
 
+      
+
+        try {
+//createProcedureAddProizvod() ;
+  Connection conn = createConn();
+          CallableStatement proc = conn.prepareCall("{call webkatalog.addproizvod( ?,?,?,? )}");
+
+proc.setString(1, proizvod.getNaziv());
+proc.setString(2, proizvod.getOpis());
+proc.setInt(3, proizvod.getCena());
+proc.setInt(4, proizvod.getDostupno());
+proc.execute();
+proc.close();
+
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+System.out.println(e.getMessage());
+            return "redirect:/";
+        }
+
+        return "redirect:/";
+    }
+   
+    
     @GetMapping("/pregledSvihProizvoda")
     public String pregledProizvoda(Model model
     ) {
-
+  model.addAttribute("sviProizvodi", proizvodRepository.getallproizvodi());
         return "main/sviProizvodi";
     }
 
@@ -148,7 +190,14 @@ public class MainController {
     ) {
         return "main/proizvod";
     }
-
+        @GetMapping("/editProizvod/{proizvodId}")
+    public String editProizvod(Model model,  @PathVariable final int proizvodId
+    ) {
+        model.addAttribute("proizvod", proizvodRepository.findFirstById(proizvodId));
+        
+        return "main/editProizvod";
+    }
+ 
     public Connection createConn() {
         String url = "jdbc:postgresql://localhost:5432/test1";
 
