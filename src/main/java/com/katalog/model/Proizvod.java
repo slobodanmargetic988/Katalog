@@ -5,45 +5,55 @@
  */
 package com.katalog.model;
 
+import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
+
 
 /**
  *
  * @author Slobodan
  */
-@Entity
-@Table(name = "proizvod",schema="webkatalog")
-public class Proizvod {
+@Entity(name="Proizvod")
+@Table (name="proizvod")
+@NamedNativeQueries({
+    @NamedNativeQuery(
+            name    =   "getallproizvodi",
+            query   =   "SELECT id, naziv, opis, cena, dostupna_kolicina FROM webkatalog.proizvod",
+                        resultClass = Proizvod.class
+    )
+})
+public class Proizvod implements Serializable{
+private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+  //  @Column(name = "id")
     private int id;
 
-    @Column(name = "naziv")
+  //  @Column(name = "naziv")
     private String naziv;
 
-    @Column(name = "opis")
+ //   @Column(name = "opis")
     private String opis;
 
-    @Column(name = "cena")
+//    @Column(name = "cena")
     private int cena;
 
-    @Column(name = "dostupna_kolicina")
+   @Column(name = "dostupna_kolicina")
     private int dostupno;
     
-    @ManyToMany(cascade = {CascadeType.ALL})
+   /* @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "veznatabela",
             joinColumns = {
@@ -52,7 +62,13 @@ public class Proizvod {
                 @JoinColumn(name = "id_kategorije")}
     )
         private List<Kategorija> kategorije;
-
+    
+    
+*/
+    
+    public Proizvod() {}
+    
+    
     public int getId() {
         return id;
     }
@@ -92,7 +108,7 @@ public class Proizvod {
     public void setDostupno(int dostupno) {
         this.dostupno = dostupno;
     }
-
+/*
     public List<Kategorija> getKategorije() {
         return kategorije;
     }
@@ -101,7 +117,7 @@ public class Proizvod {
         this.kategorije = kategorije;
     }
 
-
+*/
     
     
 }

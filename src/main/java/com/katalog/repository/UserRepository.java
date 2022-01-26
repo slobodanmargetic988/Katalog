@@ -8,6 +8,7 @@ package com.katalog.repository;
 import com.katalog.model.User;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.query.Procedure;
 
 import org.springframework.stereotype.Repository;
 
@@ -24,7 +25,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     User findFirstByEmail(String email);
     User findFirstByIme(String ime);
    User findFirstByEmailAndPassword(String email, String lozinka);
-   // Notifikacije findFirstByOpstinaAndToken(  String opstina, String token);
-    
+
    
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="srb"xmlns="https://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org" 
+
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security" 
+      >
+
+    <head>
+        <title>Početna strana | Katalog</title>
+        <meta name="description" content="demo"/> 
+         <meta name="keywords" content="demo"/>
+    <th:block th:insert="fragments/head :: head" />
+</head>
+
+<body>
+      
+
+    <th:block th:insert="fragments/navigation :: navbar" />
+
+               <div style="margin-top: 200px; min-height:600px">
+
+    
+
+
+     
+
+   
+
+        <div class="services">
+            <div>
+                <h3>Pocetna strana</h3>
+                <p>Katalog proizvoda</p>
+            </div>
+        </div>
+
+         </div>
+
+
+<th:block th:insert="fragments/footer :: footer" />
+
+
+<div id="backToTop"></div>
+
+<th:block th:insert="fragments/scripts :: scripts" />
+
+
+</body>
+
+</html>
