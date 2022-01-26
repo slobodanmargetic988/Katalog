@@ -16,14 +16,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 
 /**
  *
  * @author Slobodan
  */
-@Entity
+@Entity(name="Kategorija")
 @Table(name = "kategorija",schema="webkatalog")
+@NamedNativeQueries({
+    @NamedNativeQuery(
+            name    =   "getallkategorije",
+            query   =   "SELECT id, naziv, opis FROM webkatalog.kategorija",
+                        resultClass = Proizvod.class
+    )
+})
 public class Kategorija {
 
     @Id
@@ -38,7 +47,7 @@ public class Kategorija {
     private String opis;
 
     
-    @ManyToMany(cascade = {CascadeType.ALL})
+/*    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "veznatabela",
             joinColumns = {
@@ -46,7 +55,9 @@ public class Kategorija {
             inverseJoinColumns = {
                 @JoinColumn(name = "id_proizvoda")}
     )
-        private List<Proizvod> proizvodi;
+        private List<Proizvod> proizvodi;*/
+@ManyToMany(mappedBy = "kategorija")
+    private  List<VeznaTabela> veznatabela;
 
     public int getId() {
         return id;
@@ -72,13 +83,15 @@ public class Kategorija {
         this.opis = opis;
     }
 
-    public List<Proizvod> getProizvodi() {
-        return proizvodi;
+    public List<VeznaTabela> getVeznatabela() {
+        return veznatabela;
     }
 
-    public void setProizvodi(List<Proizvod> proizvodi) {
-        this.proizvodi = proizvodi;
+    public void setVeznatabela(List<VeznaTabela> veznatabela) {
+        this.veznatabela = veznatabela;
     }
+
+ 
 
 
     

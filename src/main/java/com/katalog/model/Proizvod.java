@@ -6,15 +6,22 @@
 package com.katalog.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
@@ -25,11 +32,12 @@ import javax.persistence.Table;
  * @author Slobodan
  */
 @Entity(name="Proizvod")
-@Table (name="proizvod")
+@Table (name="proizvod",schema="webkatalog")
 @NamedNativeQueries({
     @NamedNativeQuery(
             name    =   "getallproizvodi",
             query   =   "SELECT id, naziv, opis, cena, dostupna_kolicina FROM webkatalog.proizvod",
+          /*  "SELECT proizvod.id,naziv,opis,cena,dostupna_kolicina,id_kategorije FROM webkatalog.proizvod inner join webkatalog.veznatabela on webkatalog.proizvod.id = webkatalog.veznatabela.id_proizvoda",*/
                         resultClass = Proizvod.class
     )
 })
@@ -53,18 +61,9 @@ private static final long serialVersionUID = 1L;
    @Column(name = "dostupna_kolicina")
     private int dostupno;
     
-   /* @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "veznatabela",
-            joinColumns = {
-                @JoinColumn(name = "id_proizvoda")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "id_kategorije")}
-    )
-        private List<Kategorija> kategorije;
-    
-    
-*/
+     @OneToMany(mappedBy = "proizvod")
+    private List<VeznaTabela> veznatabela= new ArrayList<>();
+
     
     public Proizvod() {}
     
@@ -108,16 +107,17 @@ private static final long serialVersionUID = 1L;
     public void setDostupno(int dostupno) {
         this.dostupno = dostupno;
     }
-/*
-    public List<Kategorija> getKategorije() {
-        return kategorije;
+
+    public List<VeznaTabela> getVeznatabela() {
+        return veznatabela;
     }
 
-    public void setKategorije(List<Kategorija> kategorije) {
-        this.kategorije = kategorije;
+    public void setVeznatabela(List<VeznaTabela> veznatabela) {
+        this.veznatabela = veznatabela;
     }
 
-*/
+ 
+
     
     
 }

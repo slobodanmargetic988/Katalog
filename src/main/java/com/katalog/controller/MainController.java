@@ -67,7 +67,7 @@ public class MainController {
         }
 
         try {
-      System.out.println(proizvodRepository.getallproizvodi().get(0).getNaziv());
+      System.out.println(proizvodRepository.getallproizvodi().get(0).getVeznatabela().get(0).getKategorija().getNaziv());
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
