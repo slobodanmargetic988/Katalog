@@ -28,33 +28,29 @@
 
         <div class="services">
             <div>
-                <h3>Pocetna strana</h3>
-                <p>Katalog proizvoda</p>
+                <h3>SVE KATEGORIJE</h3>
+                <p>pregleg kategorija proizvoda</p>
             </div>
         </div>
  <div class="col-sm-9">
         <table class="table">
                                <tr>
                                    <td>naziv</td>
-                                   <td>opis</td>
-                                   <td>cena</td>
-                                   <td>dostupno</td>
-                                   <td>kategorije</td>
+                                   <td>opis</td>     
                                      <td>izmena</td>
                                        <td>brisanje</td>
                                </tr>
-                   <th:block th:each="proizvod:${sviProizvodi}">
+                   <th:block th:each="kat:${sveKategorije}">
                         <tr>
                       
                         
-                            <td> <a th:href="@{/pregledJednogProizvoda/{proizvodId} (proizvodId=${proizvod.id})}"><span th:text="${proizvod.naziv}"></span></a></td>
-                                   <td> <span th:text="${proizvod.opis}"></span></td>
-                                   <td> <span th:text="${proizvod.cena}"></span></td>
-                                   <td> <span th:text="${proizvod.dostupno}"></span></td>
+                            <td> <a th:href="@{/pregledJedneKategorije/{kategorijaId} (kategorijaId=${kat.id})}"><span th:text="${kat.naziv}"></span></a></td>
+                                   <td> <span th:text="${kat.opis}"></span></td>
+                                  
                                
-                                   <td>     <th:block th:each="veza : ${proizvod.veznatabela}"><span th:text="${veza.kategorija.naziv+'|'}"></span>  </th:block></td>
-                   <td><a th:href="@{/editProizvod/{proizvodId} (proizvodId=${proizvod.id})}">izmeni proizvod</a></td>   
-                   <td><a th:href="@{/removeProizvod/{proizvodId} (proizvodId=${proizvod.id})}">obrisi proizvod</a></td>
+                                 
+                   <td><a th:href="@{/editKategorija/{kategorijaId} (kategorijaId=${kat.id})}">izmeni kategoriju</a></td>   
+                   <td><a th:href="@{/removeKategorija/{kategorijaId} (kategorijaId=${kat.id})}">obrisi kategoriju</a></td>
                    
                    </tr>
                   

@@ -28,11 +28,72 @@
 
         <div class="services">
             <div>
-                <h3>Pocetna strana</h3>
-                <p>Katalog proizvoda</p>
+                <h3>Pregled jednog proizvoda</h3>
+          
             </div>
         </div>
+                   
+                   
+<div class="col-sm-9">
+        <table class="table">
+                               <tr>
+                                   <td>naziv</td>
+                                   <td>opis</td>
+                                   <td>cena</td>
+                                   <td>dostupno</td>
+                                   <td>kategorije</td>
+                                     <td>izmena</td>
+                                       <td>brisanje</td>
+                               </tr>
+                   
+                        <tr>
+                      
+                        
+                            <td> <span th:text="${proizvod.naziv}"></span></td>
+                                   <td> <span th:text="${proizvod.opis}"></span></td>
+                                   <td> <span th:text="${proizvod.cena}"></span></td>
+                                   <td> <span th:text="${proizvod.dostupno}"></span></td>
+                               
+                                   <td>     <th:block th:each="veza : ${proizvod.veznatabela}"><span th:text="${veza.kategorija.naziv+'|'}"></span> <a th:href="@{/ukloniKategorijuZaProizvod/{proizvodId}/{kategorijaId} (proizvodId=${proizvod.id},kategorijaId=${veza.kategorija.id})}" style="color:red">Ukloni kategoriju</a> </th:block></td>
+                   <td><a th:href="@{/editProizvod/{proizvodId} (proizvodId=${proizvod.id})}">izmeni proizvod</a></td>
+                    <td><a th:href="@{/removeProizvod/{proizvodId} (proizvodId=${proizvod.id})}">obrisi proizvod</a></td>
+                   </tr>
+                  
+                       
+                       
+             
+                                        </table>
+    
+    <form th:action="@{/dodajKategoriju/{proizvodId} (proizvodId=${proizvod.id})}"  method="POST" >
+                                <h2>izbor kategorije za dodavanje</h2>
+                               
+                               
+                      
+                                
+                                <select class="col-md-12 form-control input-custom-border mb-3"  name="kategorijaId"  >
+                       
+                               
+                                         <th:block th:each="kategorija:${kategorije}">
+                                             <th:block th:if=" ${ proizvod.veznatabela.?[kategorija.id == __${kategorija.id}__].isEmpty()}">
+                                    <option th:value="${kategorija.id}" 
+                                            th:text="${kategorija.naziv}" >Текст</option>
+                                    </th:block>
+                                    
+                                </th:block> 
+                    </select> 
+                                
+                                 
+                               
+                                <input type="submit" name="" value="Dodaj kategoriju"/>
+                                
 
+                            </form>
+    
+    
+    
+                        </div>
+                   
+                   
          </div>
 
 

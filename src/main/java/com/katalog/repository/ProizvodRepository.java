@@ -38,4 +38,11 @@ public class ProizvodRepository implements ProizvodDAO {
         return proizvod;
     }
 
+       
+    @Override
+    public List<Proizvod> pretragaPoImenu(String naziv) {
+        List<Proizvod> proizvodi = manager.createNamedQuery("pretragaPoImenu", Proizvod.class).setParameter("inputnaziv", "%"+naziv+"%").getResultList();
+        return proizvodi;
+    } 
+        
 }

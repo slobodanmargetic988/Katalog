@@ -30,7 +30,13 @@ import javax.persistence.Table;
     @NamedNativeQuery(
             name    =   "getallkategorije",
             query   =   "SELECT id, naziv, opis FROM webkatalog.kategorija",
-                        resultClass = Proizvod.class
+                        resultClass = Kategorija.class
+    ),
+            @NamedNativeQuery(
+            name    =   "findFirstKategorijaById",
+            query   =   "SELECT id, naziv, opis FROM webkatalog.kategorija k where k.id= :inputid",
+       
+                        resultClass = Kategorija.class
     )
 })
 public class Kategorija {

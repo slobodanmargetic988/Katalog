@@ -26,55 +26,60 @@ import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 
-
 /**
  *
  * @author Slobodan
  */
-@Entity(name="Proizvod")
-@Table (name="proizvod",schema="webkatalog")
+@Entity(name = "Proizvod")
+@Table(name = "proizvod", schema = "webkatalog")
 @NamedNativeQueries({
     @NamedNativeQuery(
-            name    =   "getallproizvodi",
-            query   =   "SELECT id, naziv, opis, cena, dostupna_kolicina FROM webkatalog.proizvod",
-          /*  "SELECT proizvod.id,naziv,opis,cena,dostupna_kolicina,id_kategorije FROM webkatalog.proizvod inner join webkatalog.veznatabela on webkatalog.proizvod.id = webkatalog.veznatabela.id_proizvoda",*/
-                        resultClass = Proizvod.class
-    ),
+            name = "getallproizvodi",
+            query = "SELECT id, naziv, opis, cena, dostupna_kolicina FROM webkatalog.proizvod",
+            /*  "SELECT proizvod.id,naziv,opis,cena,dostupna_kolicina,id_kategorije FROM webkatalog.proizvod inner join webkatalog.veznatabela on webkatalog.proizvod.id = webkatalog.veznatabela.id_proizvoda",*/
+            resultClass = Proizvod.class
+    )
+    ,
             @NamedNativeQuery(
-            name    =   "findFirstById",
-            query   =   "SELECT id, naziv, opis, cena, dostupna_kolicina FROM webkatalog.proizvod p where p.id= :inputid",
-       
-                        resultClass = Proizvod.class
+            name = "findFirstById",
+            query = "SELECT id, naziv, opis, cena, dostupna_kolicina FROM webkatalog.proizvod p where p.id= :inputid",
+            resultClass = Proizvod.class
+    )
+    ,
+            @NamedNativeQuery(
+            name = "pretragaPoImenu",
+            query = "SELECT id, naziv, opis, cena, dostupna_kolicina FROM webkatalog.proizvod p where p.naziv LIKE :inputnaziv",
+            resultClass = Proizvod.class
     )
 })
 
-public class Proizvod implements Serializable{
-private static final long serialVersionUID = 1L;
+public class Proizvod implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-  //  @Column(name = "id")
+    //  @Column(name = "id")
     private int id;
 
-  //  @Column(name = "naziv")
+    //  @Column(name = "naziv")
     private String naziv;
 
- //   @Column(name = "opis")
+    //   @Column(name = "opis")
     private String opis;
 
 //    @Column(name = "cena")
     private int cena;
 
-   @Column(name = "dostupna_kolicina")
+    @Column(name = "dostupna_kolicina")
     private int dostupno;
-    
-     @OneToMany(mappedBy = "proizvod")
-    private List<VeznaTabela> veznatabela= new ArrayList<>();
 
-    
-    public Proizvod() {}
-    
-    
+    @OneToMany(mappedBy = "proizvod")
+    private List<VeznaTabela> veznatabela = new ArrayList<>();
+
+    public Proizvod() {
+    }
+
     public int getId() {
         return id;
     }
@@ -123,8 +128,4 @@ private static final long serialVersionUID = 1L;
         this.veznatabela = veznatabela;
     }
 
- 
-
-    
-    
 }

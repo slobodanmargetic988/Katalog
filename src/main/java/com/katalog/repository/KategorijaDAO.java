@@ -5,15 +5,15 @@
  */
 package com.katalog.repository;
 
-import com.katalog.model.Proizvod;
+import com.katalog.model.Kategorija;
 import java.util.List;
 
 /**
  *
  * @author Slobodan
  */
-public interface ProizvodDAO {
-       public List<Proizvod> getallproizvodi();
-         public Proizvod findFirstById(int id);
-         public List<Proizvod> pretragaPoImenu(String naziv);
+public interface KategorijaDAO {
+       public List<Kategorija> getallkategorije();
+         public Kategorija findFirstKategorijaById(int id);
+       
 }

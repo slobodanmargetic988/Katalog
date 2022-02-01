@@ -23,17 +23,20 @@
                     <li class="nav-item ">
                         <a class="nav-link nav-link-admin" id="homeLink" th:href="@{/pregledSvihProizvoda}">SVI PROIZVODI<span class="sr-only"></span></a>
                     </li>
+                    <li class="nav-item ">
+                        <a class="nav-link nav-link-admin" id="homeLink" th:href="@{/pregledSvihKategorija}">SVE KATEGORIJE<span class="sr-only"></span></a>
+                    </li>
 <li class="nav-item ">
                         <a class="nav-link nav-link-admin" id="homeLink" th:href="@{/dodajProizvod}">Dodaj proizvod<span class="sr-only"></span></a>
                     </li>
+                    <li class="nav-item ">
+                        <a class="nav-link nav-link-admin" id="homeLink" th:href="@{/dodajKategoriju}">Dodaj Kategoriju<span class="sr-only"></span></a>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-admin" th:href="@{/prodavnica}">SHOP</a>
+                        <a class="nav-link nav-link-admin" th:href="@{/pretraga}">Pretraga Proizvoda</a>
                     </li>
 
 
-                    <li class="nav-item"  sec:authorize="hasAnyAuthority('ADMIN')">
-                        <a class="nav-link nav-link-admin" th:href="@{/admin/prodavnica}">ADMIN SHOP</a>
-                    </li>
 
 
                 </ul>

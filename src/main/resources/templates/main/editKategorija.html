@@ -32,14 +32,13 @@
                 <p>Dodavanje proizvoda</p>
             </div>
         </div>
-<form th:action="@{/editProizvod/{proizvodId} (proizvodId=${proizvod.id})}"  method="POST" >
+<form th:action="@{/editKategorija/{kategorijaId} (kategorijaId=${kategorija.id})}"  method="POST" >
                                 <h2>Registracija novog proizvoda</h2>
                                
-                                <input type="text" name="naziv" th:value="${proizvod.naziv}" />
-                                <input type="text" name="opis" th:value="${proizvod.opis}" />
+                                <input type="text" name="naziv" th:value="${kategorija.naziv}" />
+                                <input type="text" name="opis" th:value="${kategorija.opis}" />
                                
-                                <input type="number" name="cena" th:value="${proizvod.cena}"  />
-                                <input type="number" name="dostupno" th:value="${proizvod.dostupno}" class="no-arrow" />
+                     
                                  
                                
                                 <input type="submit" name="" value="Sacuvaj"/>
