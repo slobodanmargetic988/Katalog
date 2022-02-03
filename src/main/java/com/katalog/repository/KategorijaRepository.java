@@ -19,25 +19,21 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Transactional
 public class KategorijaRepository implements KategorijaDAO {
- @PersistenceContext
-    private EntityManager manager;
-     
 
- 
+    @PersistenceContext
+    private EntityManager manager;
+
     @Override
     public List<Kategorija> getallkategorije() {
         List<Kategorija> kategorije = manager.createNamedQuery("getallkategorije", Kategorija.class).getResultList();
         return kategorije;
     }
-    
-   
+
     @Override
     public Kategorija findFirstKategorijaById(int id) {
         Kategorija kategorija = manager.createNamedQuery("findFirstKategorijaById", Kategorija.class)
-    .setParameter("inputid", id).getSingleResult();
+                .setParameter("inputid", id).getSingleResult();
         return kategorija;
     }
 
-    
-    
 }

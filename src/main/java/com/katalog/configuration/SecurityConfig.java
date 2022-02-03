@@ -58,8 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/loginTry/**").permitAll()
-               // .antMatchers("/home/**").permitAll()
-             //   .antMatchers("/home").permitAll()
+                // .antMatchers("/home/**").permitAll()
+                //   .antMatchers("/home").permitAll()
                 .antMatchers("/login/**").hasAnyAuthority("ROLE_ANONYMOUS")
                 .antMatchers("/main/**").hasAnyAuthority("ROLE_ANONYMOUS")
                 .antMatchers("/admin/**").hasAnyAuthority("ADMIN")

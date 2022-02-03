@@ -7,12 +7,13 @@ import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring4.SpringTemplateEngine;
+
 /**
  *
  * @author Slobodan Margetic slobodanmargetic988@gmail.com
  */
 @Configuration
-public class ThymeleafConfig implements WebMvcConfigurer{
+public class ThymeleafConfig implements WebMvcConfigurer {
 
     @Bean
     public SpringTemplateEngine templateEngine(ITemplateResolver templateResolver) {

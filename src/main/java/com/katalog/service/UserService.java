@@ -17,10 +17,13 @@ public interface UserService {
     List<User> findAllBy();
 
     User findFirstByEmail(String Email);
-  User findFirstByIme(String ime);
+
+    User findFirstByIme(String ime);
+
     User findFirstByEmailAndPassword(String email, String lozinka);
 
     void save(User user);
-        void saveAndFlush(User user);
+
+    void saveAndFlush(User user);
 
 }

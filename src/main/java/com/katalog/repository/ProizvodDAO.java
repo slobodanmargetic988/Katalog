@@ -13,7 +13,10 @@ import java.util.List;
  * @author Slobodan Margetic slobodanmargetic988@gmail.com
  */
 public interface ProizvodDAO {
-       public List<Proizvod> getallproizvodi();
-         public Proizvod findFirstById(int id);
-         public List<Proizvod> pretragaPoImenu(String naziv);
+
+    public List<Proizvod> getallproizvodi();
+
+    public Proizvod findFirstById(int id);
+
+    public List<Proizvod> pretragaPoImenu(String naziv);
 }

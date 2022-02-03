@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService {
     public User findFirstByEmail(String Email) {
         return userRepository.findFirstByEmail(Email);
     }
+
     @Override
     public User findFirstByIme(String ime) {
         return userRepository.findFirstByIme(ime);
@@ -42,14 +43,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user) {
-      
+
         userRepository.save(user);
     }
-      @Override
+
+    @Override
     public void saveAndFlush(User user) {
-      
+
         userRepository.saveAndFlush(user);
     }
-
 
 }

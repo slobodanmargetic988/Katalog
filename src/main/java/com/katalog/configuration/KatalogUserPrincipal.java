@@ -1,46 +1,43 @@
 package com.katalog.configuration;
 
-
 import com.katalog.model.User;
 import java.util.Collection;
 import java.util.LinkedList;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 /**
  *
  * @author Slobodan Margetic slobodanmargetic988@gmail.com
  */
 
-
 public class KatalogUserPrincipal implements UserDetails {
-    private User user;
-private Collection<SimpleGrantedAuthority> authorities = new LinkedList<>();
 
- public KatalogUserPrincipal() {
+    private User user;
+    private Collection<SimpleGrantedAuthority> authorities = new LinkedList<>();
+
+    public KatalogUserPrincipal() {
         super();
     }
- 
- 
+
     public KatalogUserPrincipal(User user) {
         this.user = user;
-            
-       if (user.getRole().equals("ADMIN")) {
+
+        if (user.getRole().equals("ADMIN")) {
             authorities.add(new SimpleGrantedAuthority("ADMIN"));
+        } else {
+            if (user.getRole().equals("SHOPPER")) {
+                authorities.add(new SimpleGrantedAuthority("SHOPPER"));
+            } else {
+                authorities.add(new SimpleGrantedAuthority("VISITOR"));
+            }
         }
-       else{
-        if (user.getRole().equals("SHOPPER")) {
-            authorities.add(new SimpleGrantedAuthority("SHOPPER"));
-        }
-        else{
-        authorities.add(new SimpleGrantedAuthority("VISITOR"));
-        }
-       }
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-         return authorities;
+        return authorities;
     }
 
     @Override
@@ -50,29 +47,30 @@ private Collection<SimpleGrantedAuthority> authorities = new LinkedList<>();
 
     @Override
     public String getUsername() {
-         return user.getEmail();
+        return user.getEmail();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-         return true;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-         return true;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-         return true;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-       return true;
+        return true;
     }
-      public User getUser() {
+
+    public User getUser() {
         return user;
     }
 }

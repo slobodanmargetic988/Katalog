@@ -13,7 +13,9 @@ import java.util.List;
  * @author Slobodan Margetic slobodanmargetic988@gmail.com
  */
 public interface KategorijaDAO {
-       public List<Kategorija> getallkategorije();
-         public Kategorija findFirstKategorijaById(int id);
-       
+
+    public List<Kategorija> getallkategorije();
+
+    public Kategorija findFirstKategorijaById(int id);
+
 }

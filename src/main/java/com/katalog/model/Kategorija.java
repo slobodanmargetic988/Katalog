@@ -6,15 +6,11 @@
 package com.katalog.model;
 
 import java.util.List;
-import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
@@ -24,19 +20,19 @@ import javax.persistence.Table;
  *
  * @author Slobodan Margetic slobodanmargetic988@gmail.com
  */
-@Entity(name="Kategorija")
-@Table(name = "kategorija",schema="webkatalog")
+@Entity(name = "Kategorija")
+@Table(name = "kategorija", schema = "webkatalog")
 @NamedNativeQueries({
     @NamedNativeQuery(
-            name    =   "getallkategorije",
-            query   =   "SELECT id, naziv, opis FROM webkatalog.kategorija",
-                        resultClass = Kategorija.class
-    ),
+            name = "getallkategorije",
+            query = "SELECT id, naziv, opis FROM webkatalog.kategorija",
+            resultClass = Kategorija.class
+    )
+    ,
             @NamedNativeQuery(
-            name    =   "findFirstKategorijaById",
-            query   =   "SELECT id, naziv, opis FROM webkatalog.kategorija k where k.id= :inputid",
-       
-                        resultClass = Kategorija.class
+            name = "findFirstKategorijaById",
+            query = "SELECT id, naziv, opis FROM webkatalog.kategorija k where k.id= :inputid",
+            resultClass = Kategorija.class
     )
 })
 public class Kategorija {
@@ -52,8 +48,7 @@ public class Kategorija {
     @Column(name = "opis")
     private String opis;
 
-    
-/*    @ManyToMany(cascade = {CascadeType.ALL})
+    /*    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "veznatabela",
             joinColumns = {
@@ -62,8 +57,8 @@ public class Kategorija {
                 @JoinColumn(name = "id_proizvoda")}
     )
         private List<Proizvod> proizvodi;*/
-@ManyToMany(mappedBy = "kategorija")
-    private  List<VeznaTabela> veznatabela;
+    @ManyToMany(mappedBy = "kategorija")
+    private List<VeznaTabela> veznatabela;
 
     public int getId() {
         return id;
@@ -97,8 +92,4 @@ public class Kategorija {
         this.veznatabela = veznatabela;
     }
 
- 
-
-
-    
 }
