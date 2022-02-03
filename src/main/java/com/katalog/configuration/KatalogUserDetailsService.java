@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 /**
  *
- * @author Slobodan
+ * @author Slobodan Margetic slobodanmargetic988@gmail.com
  */
 @Service
 public class KatalogUserDetailsService implements UserDetailsService {

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Slobodan
+ * @author Slobodan Margetic slobodanmargetic988@gmail.com
  */
 @Service
 public class UserServiceImpl implements UserService {

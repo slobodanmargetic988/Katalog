@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Slobodan
+ * @author Slobodan Margetic slobodanmargetic988@gmail.com
  */
 @Entity
 @Table(name = "users",schema="webkatalog")

@@ -34,6 +34,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -41,8 +43,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author Slobodan Margetic slobodanmargetic988@gmail.com
  */
 @Scope(WebApplicationContext.SCOPE_REQUEST)
-@Controller
-public class MainController {
+@RestController
+@RequestMapping(value = "/rest")
+public class MainRESTController {
     
     private static EntityManagerFactory factory = null;
     private static EntityManager entityManager = null;
